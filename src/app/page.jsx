@@ -203,14 +203,14 @@ const Page = () => {
       </div>
 
       {/* Scroll Edilebilir İçerik */}
-      <div className="relative z-10 w-full">
+      <div className="relative z-10 w-full mt-[-80px]">
         <div className="max-w-5xl w-full mx-auto px-4">
           <div className="backdrop-blur-xs bg-white/10 rounded-xl flex flex-col gap-0 px-2 py-20 space-y-4">
             <section className="h-screen flex flex-col justify-center items-center text-center px-4">
               <div className="flex flex-row-reverse items-center gap-2">
                 <div className="flex flex-col items-start">
                   <h1
-                    className="text-6xl font-bold  mb-6"
+                    className="text-3xl font-bold mb-6"
                     style={{ color: textColor }}
                   >
                     {translate ? "Hakkımda" : "About"}
@@ -226,7 +226,7 @@ const Page = () => {
                 </div>
                 <div className="border-2 border-red-800 h-full"></div>
                 <p
-                  className="text-black max-w-3xl leading-relaxed"
+                  className="text-black max-w-3xl leading-relaxed text-xs"
                   style={{ color: textColor }}
                 >
                   {translate
@@ -256,7 +256,7 @@ const Page = () => {
                   </h2>
 
                   <p
-                    className="text-black text-sm"
+                    className="text-black text-xs"
                     style={{ color: textColor }}
                   >
                     {translate
@@ -297,7 +297,7 @@ const Page = () => {
                   </h2>
 
                   <p
-                    className="text-black text-sm"
+                    className="text-black text-xs"
                     style={{ color: textColor }}
                   >
                     {translate
@@ -329,7 +329,7 @@ const Page = () => {
 
             <section className="h-screen flex flex-col justify-center items-center text-center px-4">
               <h1
-                className="text-5xl font-bold text-black mb-6 mt-20"
+                className="text-5xl font-bold text-black mb-6"
                 style={{ color: textColor }}
               >
                 {translate ? "Yetenekler" : "Skills"}

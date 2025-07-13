@@ -10,7 +10,7 @@ const AboutCard = ({ text, textColor, bgTheme }) => {
       } border`}
       style={{ color: textColor }}
     >
-      <p className="leading-relaxed text-lg">{text}</p>
+      <p className="leading-relaxed text-xs">{text}</p>
     </div>
   );
 };

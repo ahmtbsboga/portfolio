@@ -166,7 +166,7 @@ const Projects = () => {
       </div>
 
       {/* Ana İçerik */}
-      <div className="relative z-10 p-10 max-sm:ml-[-30px] max-sm:p-4">
+      <div className="relative z-10 p-10 max-sm:ml-[-28px] max-sm:p-4">
         <p className="text-7xl max-sm:text-5xl font-bold text-black px-12 py-2 whitespace-nowrap">
           {translate ? (
             <span className="text-red-800">Projelerim</span>
