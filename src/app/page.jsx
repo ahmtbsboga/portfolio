@@ -329,7 +329,7 @@ const Page = () => {
 
             <section className="h-screen flex flex-col justify-center items-center text-center px-4">
               <h1
-                className="text-5xl font-bold text-black mb-6"
+                className="text-5xl font-bold text-black mb-6 responsive-skills"
                 style={{ color: textColor }}
               >
                 {translate ? "Yetenekler" : "Skills"}
@@ -398,17 +398,17 @@ const Page = () => {
             </section>
           </div>
         </div>
-        <motion.button
-          onClick={() => setTranslate(!translate)}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          className={`fixed top-5 right-5 z-50 p-3 rounded-full shadow-lg ${
-            bgTheme === "dark" ? "bg-white/20" : "bg-black/20"
-          } backdrop-blur-md text-black`}
-        >
-          {translate ? "🇹🇷 TR" : "🇬🇧 EN"}
-        </motion.button>
       </div>
+      <motion.button
+        onClick={() => setTranslate(!translate)}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        className={`fixed top-5 right-5 z-50 p-3 rounded-full shadow-lg ${
+          bgTheme === "dark" ? "bg-white/20" : "bg-black/20"
+        } backdrop-blur-md text-black`}
+      >
+        {translate ? "🇹🇷 TR" : "🇬🇧 EN"}
+      </motion.button>
     </div>
   );
 };

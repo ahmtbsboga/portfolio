@@ -31,3 +31,45 @@ p {
     @apply hover:scale-105 hover:bg-gray-400 hover:translate-y-[-4px] duration-400;
   }
 }
+
+@media (max-width: 1024px) {
+  .responsive-skills {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 860px) {
+  .responsive-skills {
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .responsive-skills {
+    margin-top: 50px;
+  }
+}
+
+@media (max-width: 560px) {
+  .responsive-skills {
+    margin-top: 70px;
+  }
+}
+
+@media (max-width: 425px) {
+  .responsive-skills {
+    margin-top: 250px;
+  }
+}
+
+@media (max-width: 380px) {
+  .responsive-skills {
+    margin-top: 700px;
+  }
+}
+
+@media (max-width: 240px) {
+  .responsive-skills {
+    margin-top: 100px;
+  }
+}
