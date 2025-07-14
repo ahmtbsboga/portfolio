@@ -5,6 +5,8 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { IoIosColorFilter, IoMdClose } from "react-icons/io";
 import Image from "next/image";
+import AboutTable from "@/app/components/aboutTable/aboutTable";
+import AboutDev from "@/app/components/aboutDev/aboutDev";
 
 const About = () => {
   const [translate, setTranslate] = useState(false);
@@ -93,6 +95,18 @@ const About = () => {
             </motion.div>
           ))}
         </div>
+
+        <AboutDev
+          textColor={textColor}
+          bgTheme={bgTheme}
+          translate={translate}
+        />
+
+        <AboutTable
+          textColor={textColor}
+          bgTheme={bgTheme}
+          translate={translate}
+        />
       </div>
 
       {/* Dil Değiştirme Butonu */}

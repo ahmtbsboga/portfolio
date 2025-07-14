@@ -59,7 +59,7 @@ const Sidebar = () => {
           </button>
         )}
 
-        <div className="flex flex-row-reverse items-center px-4">
+        <div className="flex flex-row-reverse items-center px-2">
           <div className="text-black flex flex-col items-end gap-10">
             {navItems.map(({ href, labelTR, labelEN, icon }) => {
               const isActive = pathname === href;
@@ -69,17 +69,23 @@ const Sidebar = () => {
                   href={href}
                   className={`flex items-center gap-4 px-2 py-1 rounded-lg transition ${
                     isActive
-                      ? "ring-4 rounded-tr-3xl ring-black font-bold text-black"
+                      ? "ring ring-black font-bold text-black bg-black"
                       : "hover:text-gray-700"
                   }  hover:scale-110 duration-400`}
                 >
                   <span
-                    className={`${isActive ? "text-black" : "text-gray-900"}`}
+                    className={`${
+                      isActive ? "text-white" : "text-gray-900"
+                    } p-1`}
                   >
                     {icon}
                   </span>
                   {sideBarOpen && (
-                    <p className="w-20 tracking-widest">
+                    <p
+                      className={`w-20 tracking-widest ${
+                        isActive ? "text-white" : "text-gray-900"
+                      }`}
+                    >
                       {!language ? labelEN : labelTR}
                     </p>
                   )}

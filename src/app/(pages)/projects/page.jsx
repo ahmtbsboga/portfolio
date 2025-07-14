@@ -213,8 +213,8 @@ const Projects = () => {
           ))}
         </motion.div>
 
-        <div className="flex justify-center items-center gap-1 flex-col mt-5 pb-10">
-          <h1 className="font-extrabold" style={{ color: textColor }}>
+        <div className="flex justify-center items-center gap-1 flex-col mt-10 pb-10">
+          <h1 className="font-extrabold text-6xl" style={{ color: textColor }}>
             {translate ? "Ve dahası .." : "See More"}
           </h1>
           <Link
@@ -222,7 +222,7 @@ const Projects = () => {
             target="_blank"
             rel="noreferrer"
             style={{ color: textColor }}
-            className="relative underline shadow-2xl shadow-black p-3 rounded-lg duration-700 animate-pulse"
+            className="relative underline shadow-2xl shadow-black p-3 rounded-lg duration-700 animate-pulse text-4xl"
           >
             GitHub
           </Link>
