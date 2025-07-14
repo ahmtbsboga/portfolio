@@ -433,10 +433,11 @@ const Page = () => {
                 : "You can contact me using the information below."}
             </p>
 
-            <div className="flex flex-col space-y-4 w-full max-w-sm">
+            <div className="flex flex-col items-start space-y-4 w-full max-w-sm">
               <a
                 href="mailto:ahmetcik6666@gmail.com?subject=İletişim%20Talebi&body=Merhaba%20Ahmet,"
-                className="flex items-center justify-center gap-2 text-blue-500 underline hover:text-blue-600 transition text-sm md:text-base"
+                className="flex items-center justify-center gap-2 underline transition text-sm md:text-base"
+                style={{ color: textColor }}
               >
                 <MdEmail size={20} />
                 ahmetcik6666@gmail.com
@@ -446,15 +447,17 @@ const Page = () => {
                 href="https://wa.me/905465767509?text=Merhaba%2C%20portfolyo%20sitenizi%20inceledim%20ve%20detayl%C4%B1%20bilgi%20almak%20istiyorum.%20M%C3%BCsaitseniz%20g%C3%B6r%C3%BC%C5%9Febilir%20miyiz%3F"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 text-blue-500 underline hover:text-blue-600 transition text-sm md:text-base"
+                className="flex items-center justify-center gap-2 underline transition text-sm md:text-base"
+                style={{ color: textColor }}
               >
                 <FaWhatsapp size={20} />
-                +90 546 576 7509 (WhatsApp)
+                WhatsApp
               </a>
 
               <a
                 href="tel:+905465767509"
-                className="flex items-center justify-center gap-2 text-blue-500 underline hover:text-blue-600 transition text-sm md:text-base"
+                className="flex items-center justify-center gap-2 underline transition text-sm md:text-base"
+                style={{ color: textColor }}
               >
                 <MdPhone size={20} />
                 +90 546 576 7509
