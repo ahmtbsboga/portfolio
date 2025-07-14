@@ -268,7 +268,7 @@ const Page = () => {
                 initial={{ x: -60, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-                className="max-w-xl leading-relaxed text-sm md:text-base"
+                className="max-w-xl leading-relaxed text-sm md:text-base ml-4"
               >
                 {translate
                   ? "Merhaba! Ben Ahmet, yazılım geliştiricisiyim. React ve React Native ile modern, kullanıcı dostu uygulamalar yapmayı seviyorum. Yeni teknolojiler öğrenmek ve projeler üretmek benim tutkum."
@@ -443,7 +443,7 @@ const Page = () => {
               </a>
 
               <a
-                href="https://wa.me/905465767509?text=Merhaba%2C%20Ahmet%20portfolyo%20sitesinden%20ula%C5%9F%C4%B1yorum."
+                href="https://wa.me/905465767509?text=Merhaba%2C%20portfolyo%20sitenizi%20inceledim%20ve%20detayl%C4%B1%20bilgi%20almak%20istiyorum.%20M%C3%BCsaitseniz%20g%C3%B6r%C3%BC%C5%9Febilir%20miyiz%3F"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 text-blue-500 underline hover:text-blue-600 transition text-sm md:text-base"
