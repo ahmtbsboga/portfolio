@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import projectText from "../../constants/projectsText";
+import projects from "../../constants/projectsText";
 import Link from "next/link";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
@@ -44,37 +44,9 @@ const Projects = () => {
     { name: "Mor", value: "#a855f7" },
   ];
 
-  const projects = [
-    {
-      src: "/amazonclone.mp4",
-      title_tr: "Amazon Klon",
-      title_en: "Amazon Clone",
-    },
-    {
-      src: "/carrental.mp4",
-      title_tr: "Araç Kiralama",
-      title_en: "Car Rental",
-    },
-    {
-      src: "/chatapp.mp4",
-      title_tr: "Sohbet Uygulaması",
-      title_en: "Chat App",
-    },
-    {
-      src: "/flightradar.mp4",
-      title_tr: "Uçuş Radar",
-      title_en: "Flight Radar",
-    },
-    {
-      src: "/portfoliovideo.mp4",
-      title_tr: "Portföy",
-      title_en: "Portfolio",
-    },
-  ];
-
   return (
     <div className="relative min-h-screen w-full overflow-x-hidden">
-      {/* Arka Plan Resmi - Fixed ve tam ekran */}
+      {/* Arka Plan Resmi */}
       <div className="fixed inset-0 z-10">
         <Image
           src={bgChange}
@@ -86,8 +58,8 @@ const Projects = () => {
         />
       </div>
 
+      {/* Tema Ayarları */}
       <div>
-        {/* Tema Ayarları Butonu */}
         <motion.button
           onClick={() => setThemeOpen(!themeOpen)}
           whileHover={{ scale: 1.1 }}
@@ -99,7 +71,6 @@ const Projects = () => {
           {themeOpen ? <IoMdClose size={20} /> : <IoIosColorFilter size={20} />}
         </motion.button>
 
-        {/* Tema Seçim Paneli */}
         {themeOpen && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -112,21 +83,22 @@ const Projects = () => {
               {translate ? "Tema Ayarları" : "Theme Settings"}
             </h3>
 
-            {/* Arkaplan Teması */}
             <div className="mb-4">
               <p className="text-sm mb-2 text-gray-400">
                 {translate ? "Arkaplan" : "Background"}
               </p>
               <div className="flex gap-2">
                 <button
-                  onClick={() => setBgTheme("dark")}
+                  onClick={() => {
+                    setBgTheme("dark");
+                    setBgChange("/bgbeyaz.jpg");
+                  }}
                   className={`p-2 rounded-lg ${
                     bgTheme === "dark" ? "ring-2 ring-blue-500" : ""
                   }`}
                   style={{ backgroundColor: "#0f172a" }}
                 >
                   <Image
-                    onClick={() => setBgChange("/bgbeyaz.jpg")}
                     width={50}
                     height={50}
                     quality={100}
@@ -136,14 +108,16 @@ const Projects = () => {
                   />
                 </button>
                 <button
-                  onClick={() => setBgTheme("light")}
+                  onClick={() => {
+                    setBgTheme("light");
+                    setBgChange("/bgkrem.jpeg");
+                  }}
                   className={`p-2 rounded-lg ${
                     bgTheme === "light" ? "ring-2 ring-blue-500" : ""
                   }`}
                   style={{ backgroundColor: "#f8fafc" }}
                 >
                   <Image
-                    onClick={() => setBgChange("/bgkrem.jpeg")}
                     width={50}
                     height={50}
                     quality={100}
@@ -155,7 +129,6 @@ const Projects = () => {
               </div>
             </div>
 
-            {/* Metin Rengi */}
             <div>
               <p className="text-sm mb-2 text-gray-400">
                 {translate ? "Metin Rengi" : "Text Color"}
@@ -192,21 +165,22 @@ const Projects = () => {
             </>
           )}
         </p>
+
         <motion.div
           className="grid grid-cols-4 gap-5 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 mt-10 max-sm:pl-12"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {projects.map(({ src, title }, i) => (
+          {projects.map((project, i) => (
             <motion.div
-              key={i}
+              key={project.id}
               onClick={() => handleMobileClick(i)}
               className="relative aspect-video w-full bg-black rounded-xl overflow-hidden group cursor-pointer"
               variants={itemVariants}
             >
               <video
-                src={src}
+                src={project.src}
                 autoPlay
                 loop
                 muted
@@ -214,15 +188,13 @@ const Projects = () => {
                 className="w-full h-full object-cover group-hover:opacity-40"
               />
               <div
-                className={`
-          absolute top-0 h-full w-1/2 bg-black/70 text-white flex flex-col justify-center p-4
-          transition-all duration-500
-          ${activeIndex === i ? "left-0" : "left-[-100%]"}
-          group-hover:left-0
-        `}
+                className={`absolute top-0 h-full w-1/2 bg-black/70 text-white flex flex-col justify-center p-4
+                  transition-all duration-500
+                  ${activeIndex === i ? "left-0" : "left-[-100%]"}
+                  group-hover:left-0`}
               >
                 <p className="text-xs" style={{ color: textColor }}>
-                  {projectText[i]?.text}
+                  {translate ? project.text_tr : project.text_en}
                 </p>
               </div>
               <h3
@@ -235,18 +207,15 @@ const Projects = () => {
                       : "rgba(255,255,255,0.5)",
                 }}
               >
-                {translate ? projects[i].title_tr : projects[i].title_en}
+                {translate ? project.title_tr : project.title_en}
               </h3>
             </motion.div>
           ))}
         </motion.div>
 
         <div className="flex justify-center items-center gap-1 flex-col mt-5 pb-10">
-          <h1
-            className="text-white font-extrabold"
-            style={{ color: textColor }}
-          >
-            Ve dahası ..
+          <h1 className="font-extrabold" style={{ color: textColor }}>
+            {translate ? "Ve dahası .." : "See More"}
           </h1>
           <Link
             href={"https://github.com/ahmtbsboga"}
@@ -259,6 +228,8 @@ const Projects = () => {
           </Link>
         </div>
       </div>
+
+      {/* Dil Değiştirme Butonu */}
       <motion.button
         onClick={() => setTranslate(!translate)}
         whileHover={{ scale: 1.1 }}
