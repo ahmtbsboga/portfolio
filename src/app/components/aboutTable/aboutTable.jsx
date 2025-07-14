@@ -25,7 +25,9 @@ const AboutTable = ({ textColor, translate, bgTheme }) => {
           <h1 className="font-extrabold max-sm:text-xs">
             {!translate ? "Birthday :" : "Doğum Günü :"}
           </h1>
-          <p className="max-sm:text-xs">1 June 2003</p>
+          <p className="max-sm:text-xs">
+            1 {!translate ? "June" : "Haziran"} 2003
+          </p>
         </div>
 
         <div className="flex items-center gap-3 max-sm:border-b">
@@ -53,7 +55,7 @@ const AboutTable = ({ textColor, translate, bgTheme }) => {
           <h1 className="font-extrabold max-sm:text-xs">
             {!translate ? "Experience :" : "Deneyim :"}
           </h1>
-          <p className="max-sm:text-xs">1+ Year</p>
+          <p className="max-sm:text-xs">1+ {!translate ? "Year" : "Yıl"}</p>
         </div>
 
         <div className="flex items-center gap-3 max-sm:border-b">
