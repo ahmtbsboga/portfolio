@@ -208,7 +208,12 @@ const Page = () => {
           <div className="backdrop-blur-xs bg-white/10 rounded-xl flex flex-col gap-0 px-2 py-20 space-y-4">
             <section className="h-screen flex flex-col justify-center items-center text-center px-4">
               <div className="flex flex-row-reverse items-center gap-2">
-                <div className="flex flex-col items-start">
+                <motion.div
+                  initial={{ x: 60, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.7, ease: "easeOut" }}
+                  className="flex flex-col items-start"
+                >
                   <h1
                     className="text-3xl font-bold mb-6"
                     style={{ color: textColor }}
@@ -223,131 +228,177 @@ const Page = () => {
                     alt="profile"
                     className="rounded-lg mt-4"
                   />
-                </div>
+                </motion.div>
+
                 <div className="border-2 border-red-800 h-full"></div>
-                <p
+                <motion.p
+                  initial={{ x: -60, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{
+                    duration: 0.6,
+                    ease: "easeOut",
+                    delay: 0.2,
+                  }}
                   className="text-black max-w-3xl leading-relaxed text-xs"
                   style={{ color: textColor }}
                 >
                   {translate
                     ? "Merhaba! Ben Ahmet, yazılım geliştiricisiyim. React ve React Native ile modern, kullanıcı dostu uygulamalar yapmayı seviyorum. Yeni teknolojiler öğrenmek ve projeler üretmek benim tutkum."
                     : "Hello! I'm Ahmet, a software developer. I enjoy building modern, user-friendly applications with React and React Native. Learning new technologies and creating projects is my passion."}
-                </p>
+                </motion.p>
               </div>
             </section>
 
             <section className="h-screen flex flex-col justify-center items-center text-center px-4">
-              <h1
+              <motion.h1
+                initial={{ y: -60, opacity: 0, scale: 0.9 }}
+                animate={{ y: 0, opacity: 1, scale: 1 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 250,
+                  damping: 20,
+                  duration: 0.6,
+                  delay: 0.2,
+                }}
                 className="text-5xl font-bold text-black mb-6"
                 style={{ color: textColor }}
               >
                 {translate ? "Projeler" : "Projects"}
-              </h1>
+              </motion.h1>
               <Link href={"/projects"} className="mb-4 text-blue-500 underline">
                 {translate ? "Daha Fazla" : "See More"}
               </Link>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl w-full">
-                <div className="bg-white/20 rounded-lg p-6 shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer">
-                  <h2
-                    className="text-2xl font-semibold mb-2 text-black"
-                    style={{ color: textColor }}
+                {[0, 1].map((i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ y: 50, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{
+                      duration: 0.6,
+                      delay: i * 0.2,
+                      ease: "easeOut",
+                    }}
+                    className="bg-white/20 rounded-lg p-6 shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
                   >
-                    {translate ? "QR Menü" : "QR Menu"}
-                  </h2>
-
-                  <p
-                    className="text-black text-xs"
-                    style={{ color: textColor }}
-                  >
-                    {translate
-                      ? "React, Next.js ve Firebase kullanarak restoranlar için QR kod tabanlı bir menü sistemi geliştirdim."
-                      : "I developed a QR code-based menu system for restaurants using React, Next.js, and Firebase."}
-                  </p>
-
-                  <div className="border mt-2 mb-2"></div>
-
-                  <div className="flex justify-center">
-                    <Image
-                      src="/qr.jpeg"
-                      width={100}
-                      height={100}
-                      alt="qr"
-                      className="rounded-lg shadow-lg"
-                    />
-                  </div>
-
-                  <div className="border mt-2 mb-2"></div>
-
-                  <Link
-                    href={"https://tatalqr.vercel.app/menu"}
-                    target="_blank"
-                    className="underline text-blue-500"
-                  >
-                    {translate ? "QR Menü" : "QR Menu"}
-                  </Link>
-                </div>
-                <div className="bg-white/20 rounded-lg p-6 shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer">
-                  <h2
-                    className="text-2xl font-semibold mb-2 text-black"
-                    style={{ color: textColor }}
-                  >
-                    {translate
-                      ? "Araç Kiralama Platformu"
-                      : "Car Rental Platform"}
-                  </h2>
-
-                  <p
-                    className="text-black text-xs"
-                    style={{ color: textColor }}
-                  >
-                    {translate
-                      ? "TypeScript ve Next.js kullanarak geliştirdiğim Full-Stack bir araç kiralama uygulaması. Stripe ile güvenli ödeme sistemi entegre ettim. Projede hem frontend hem backend taraflarını yönettim."
-                      : "A full-stack car rental application I developed using TypeScript and Next.js. I integrated a secure payment system with Stripe and handled both frontend and backend parts of the project."}
-                  </p>
-
-                  <div className="border mt-2 mb-2"></div>
-
-                  <video
-                    src="/carrental.mp4"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-auto rounded-lg shadow-lg"
-                  ></video>
-                  <div className="border mt-2 mb-2"></div>
-                  <Link
-                    href={"https://github.com/ahmtbsboga/React-NextJS-Project"}
-                    target="_blank"
-                    className="underline text-blue-500 flex items-center justify-center"
-                  >
-                    Github <CgArrowTopRight />
-                  </Link>
-                </div>
+                    {i === 0 ? (
+                      <>
+                        <h2
+                          className="text-2xl font-semibold mb-2 text-black"
+                          style={{ color: textColor }}
+                        >
+                          {translate ? "QR Menü" : "QR Menu"}
+                        </h2>
+                        <p
+                          className="text-black text-xs"
+                          style={{ color: textColor }}
+                        >
+                          {translate
+                            ? "React, Next.js ve Firebase kullanarak restoranlar için QR kod tabanlı bir menü sistemi geliştirdim."
+                            : "I developed a QR code-based menu system for restaurants using React, Next.js, and Firebase."}
+                        </p>
+                        <div className="border mt-2 mb-2"></div>
+                        <div className="flex justify-center">
+                          <Image
+                            src="/qr.jpeg"
+                            width={100}
+                            height={100}
+                            alt="qr"
+                            className="rounded-lg shadow-lg"
+                          />
+                        </div>
+                        <div className="border mt-2 mb-2"></div>
+                        <Link
+                          href={"https://tatalqr.vercel.app/menu"}
+                          target="_blank"
+                          className="underline text-blue-500"
+                        >
+                          {translate ? "QR Menü" : "QR Menu"}
+                        </Link>
+                      </>
+                    ) : (
+                      <>
+                        <h2
+                          className="text-2xl font-semibold mb-2 text-black"
+                          style={{ color: textColor }}
+                        >
+                          {translate
+                            ? "Araç Kiralama Platformu"
+                            : "Car Rental Platform"}
+                        </h2>
+                        <p
+                          className="text-black text-xs"
+                          style={{ color: textColor }}
+                        >
+                          {translate
+                            ? "TypeScript ve Next.js kullanarak geliştirdiğim Full-Stack bir araç kiralama uygulaması. Stripe ile güvenli ödeme sistemi entegre ettim. Projede hem frontend hem backend taraflarını yönettim."
+                            : "A full-stack car rental application I developed using TypeScript and Next.js. I integrated a secure payment system with Stripe and handled both frontend and backend parts of the project."}
+                        </p>
+                        <div className="border mt-2 mb-2"></div>
+                        <video
+                          src="/carrental.mp4"
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          className="w-full h-auto rounded-lg shadow-lg"
+                        ></video>
+                        <div className="border mt-2 mb-2"></div>
+                        <Link
+                          href={
+                            "https://github.com/ahmtbsboga/React-NextJS-Project"
+                          }
+                          target="_blank"
+                          className="underline text-blue-500 flex items-center justify-center"
+                        >
+                          Github <CgArrowTopRight />
+                        </Link>
+                      </>
+                    )}
+                  </motion.div>
+                ))}
               </div>
             </section>
 
             <section className="h-screen flex flex-col justify-center items-center text-center px-4">
-              <h1
+              <motion.h1
+                initial={{ y: -50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 20,
+                  duration: 0.6,
+                }}
                 className="text-5xl font-bold text-black mb-6 responsive-skills"
                 style={{ color: textColor }}
               >
                 {translate ? "Yetenekler" : "Skills"}
-              </h1>
-              <ul className="flex flex-wrap flex-row-reverse gap-4">
-                {techs.map(({ name, url, icon: Icon }) => (
-                  <li key={name}>
+              </motion.h1>
+              <ul className="flex flex-wrap gap-4">
+                {techs.map(({ name, url, icon: Icon }, index) => (
+                  <motion.li
+                    key={name}
+                    initial={{ y: -30, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 200,
+                      damping: 15,
+                      delay: index * 0.1, // sırayla gelsin
+                    }}
+                  >
                     <Link
                       href={url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 bg-white/20 rounded-full px-6 py-3  font-semibold  transition hover:bg-black/50 duration-700"
+                      className="flex items-center gap-2 bg-white/20 rounded-full px-6 py-3 font-semibold transition hover:bg-black/50 duration-700"
                       style={{ color: textColor }}
                     >
                       <Icon className="text-xl" />
                       {name}
                     </Link>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </section>
@@ -371,17 +422,17 @@ const Page = () => {
               <div className="flex flex-col space-y-3 max-w-sm mx-auto">
                 <a
                   href="mailto:ahmetcik6666@gmail.com?subject=İletişim%20Talebi&body=Merhaba%20Ahmet,"
-                  className="flex items-center gap-2 text-cyan-400 underline text-lg hover:text-cyan-600 transition"
+                  className="flex items-center gap-2 text-blue-500 underline text-lg hover:text-blue-600 transition"
                 >
                   <MdEmail size={24} />
                   ahmetcik6666@gmail.com
                 </a>
 
                 <a
-                  href="https://wa.me/905465767509"
+                  href="https://wa.me/905465767509?text=Merhaba%2C%20Ahmet%20portfolyo%20sitesinden%20ula%C5%9F%C4%B1yorum."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-cyan-400 underline hover:text-cyan-600 transition"
+                  className="flex items-center gap-2 text-blue-500 underline hover:text-blue-600 transition"
                 >
                   <FaWhatsapp size={24} />
                   Whatsapp
@@ -389,7 +440,7 @@ const Page = () => {
 
                 <a
                   href="tel:+905465767509"
-                  className="flex items-center gap-2 text-cyan-400 underline hover:text-cyan-600 transition"
+                  className="flex items-center gap-2 text-blue-500 underline hover:text-blue-600 transition"
                 >
                   <MdPhone size={24} />
                   +90 546 576 7509

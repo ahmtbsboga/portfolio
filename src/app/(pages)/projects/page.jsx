@@ -18,6 +18,21 @@ const Projects = () => {
     setActiveIndex((prev) => (prev === index ? null : index));
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   const colors = [
     { name: "Kırmızı", value: "#ef4444" },
     { name: "Mavi", value: "#3b82f6" },
@@ -177,12 +192,18 @@ const Projects = () => {
             </>
           )}
         </p>
-        <div className="grid grid-cols-4 gap-5 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 mt-10 max-sm:pl-12">
+        <motion.div
+          className="grid grid-cols-4 gap-5 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 mt-10 max-sm:pl-12"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           {projects.map(({ src, title }, i) => (
-            <div
+            <motion.div
               key={i}
               onClick={() => handleMobileClick(i)}
-              className="relative aspect-video w-full bg-black rounded-xl overflow-hidden group"
+              className="relative aspect-video w-full bg-black rounded-xl overflow-hidden group cursor-pointer"
+              variants={itemVariants}
             >
               <video
                 src={src}
@@ -194,11 +215,11 @@ const Projects = () => {
               />
               <div
                 className={`
-                  absolute top-0 h-full w-1/2 bg-black/70 text-white flex flex-col justify-center p-4
-                  transition-all duration-500
-                  ${activeIndex === i ? "left-0" : "left-[-100%]"}
-                  group-hover:left-0
-                `}
+          absolute top-0 h-full w-1/2 bg-black/70 text-white flex flex-col justify-center p-4
+          transition-all duration-500
+          ${activeIndex === i ? "left-0" : "left-[-100%]"}
+          group-hover:left-0
+        `}
               >
                 <p className="text-xs" style={{ color: textColor }}>
                   {projectText[i]?.text}
@@ -216,9 +237,10 @@ const Projects = () => {
               >
                 {translate ? projects[i].title_tr : projects[i].title_en}
               </h3>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
+
         <div className="flex justify-center items-center gap-1 flex-col mt-5 pb-10">
           <h1
             className="text-white font-extrabold"
