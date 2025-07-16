@@ -10,6 +10,7 @@ import { IoIosColorFilter, IoMdClose } from "react-icons/io";
 import ShadowTheme from "./components/shadowTheme/shadowTheme";
 import { colors } from "./constants/colors";
 import { techs } from "./constants/tech";
+import Libraries from "./components/libraries";
 
 const Page = () => {
   const [bgChange, setBgChange] = useState("/bgbeyaz.jpg");
@@ -18,33 +19,6 @@ const Page = () => {
   const [translate, setTranslate] = useState(false);
   const [themeOpen, setThemeOpen] = useState(false);
   const [textColor, setTextColor] = useState("#000000");
-  const [windowSize, setWindowSize] = useState({
-    width: typeof window !== "undefined" ? window.innerWidth : 0,
-    height: typeof window !== "undefined" ? window.innerHeight : 0,
-  });
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const getSkillsMargin = () => {
-    if (windowSize.height < 500) return "mt-[1000px]";
-    if (windowSize.width < 380) return "mt-[700px]";
-    if (windowSize.width < 435) return "mt-[250px]";
-    if (windowSize.width < 560) return "mt-[-100px]";
-    if (windowSize.width < 768) return "mt-[140px]";
-    if (windowSize.width < 860) return "mt-[30px]";
-    if (windowSize.width < 1024) return "mt-[-500px]";
-    return "mt-0";
-  };
 
   const myColors = colors;
   const myTechs = techs;
@@ -183,14 +157,14 @@ const Page = () => {
                 initial={{ x: -60, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-                className="max-w-xl  leading-relaxed text-sm md:text-base ml-4 bg-gray-100/30 p-2 mt-4"
+                className="max-w-xl leading-relaxed text-sm md:text-base ml-4 bg-gray-100/30 p-2 mt-4 "
               >
                 {translate
                   ? "Merhaba! Ben Ahmet, yazılım geliştiricisiyim. React ve React Native ile modern, kullanıcı dostu uygulamalar yapmayı seviyorum. Yeni teknolojiler öğrenmek ve projeler üretmek benim tutkum."
                   : "Hello! I'm Ahmet, a software developer. I enjoy building modern, user-friendly applications with React and React Native. Learning new technologies and creating projects is my passion."}
               </motion.p>
 
-              <div className="hidden md:block border-l-2 border-red-800 h-64"></div>
+              <div className="hidden md:block border-r-4 border-red-800 h-85 mr-4 ml-4"></div>
 
               <motion.div
                 initial={{ x: 60, opacity: 0 }}
@@ -200,11 +174,11 @@ const Page = () => {
               >
                 <Image
                   src={"/me1.jpeg"}
-                  width={150}
+                  width={100}
                   height={100}
                   quality={100}
                   alt="profile"
-                  className="rounded-lg mt-4 w-36 h-auto mb-4"
+                  className="rounded-lg mt-4 w-64 h-auto mb-4"
                 />
               </motion.div>
             </div>
@@ -312,7 +286,7 @@ const Page = () => {
           </section>
 
           {/* Yetenekler Bölümü */}
-          <section className="min-h-screen flex flex-col justify-center items-center text-center px-4 py-20">
+          <section className="min-h-screen flex flex-col justify-center items-center text-center px-4 py-10">
             <motion.h1
               initial={{ y: -50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -322,7 +296,7 @@ const Page = () => {
                 damping: 20,
                 duration: 0.6,
               }}
-              className={`text-3xl md:text-5xl font-bold mb-8 ${getSkillsMargin()}`}
+              className={`text-3xl md:text-5xl font-bold mb-8`}
             >
               {translate ? "Yetenekler" : "Skills"}
             </motion.h1>
@@ -405,6 +379,15 @@ const Page = () => {
             </div>
           </section>
         </div>
+        <h1
+          className="text-3xl font-bold mt-30 text-center mb-5"
+          style={{ color: textColor }}
+        >
+          {translate
+            ? "Kullanılan JavaScript kütüphaneleri ve teknolojiler."
+            : "JavaScript libraries and technologies used."}
+        </h1>
+        <Libraries textColor={textColor} />
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { IoClose } from "react-icons/io5";
 import { IoMenuOutline } from "react-icons/io5";
+import { PiScrollBold } from "react-icons/pi";
 
 const Sidebar = () => {
   const pathname = usePathname();
