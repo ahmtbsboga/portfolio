@@ -1,3 +1,6 @@
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { Noto_Serif } from "next/font/google";
 import "./globals.css";
 import Sidebar from "./components/sidebar";
@@ -46,6 +49,17 @@ export default function RootLayout({ children }) {
           <BackgroundAudio />
           <Sidebar />
           <main className="px-10 py-10">{children}</main>
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
         </div>
       </body>
     </html>

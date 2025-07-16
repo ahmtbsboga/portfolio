@@ -4,6 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FaWhatsapp, FaInstagram, FaGithub, FaLinkedin } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import ContactForm from "./components/emailSend";
 
 const links = [
   {
@@ -66,6 +67,8 @@ const Contact = () => {
           </motion.a>
         ))}
       </div>
+
+      <ContactForm />
     </div>
   );
 };
