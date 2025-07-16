@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
+import Image from "next/image";
 
 const ContactForm = () => {
   const form = useRef();
@@ -31,11 +32,21 @@ const ContactForm = () => {
       <form
         ref={form}
         onSubmit={sendEmail}
-        className="flex flex-col gap-4 max-w-md mx-auto p-4 mb-100 w-full shadow-2xl shadow-black mt-10"
+        className="flex flex-col gap-4 max-w-md mx-auto p-4 mb-100 w-full shadow-2xl shadow-black mt-10 rounded-xl"
       >
-        <p className="text-gray-600 mt-4 whitespace-normal font-serif">
-          Sorularınızı ve taleplerinizi e-posta yoluyla iletebilirsiniz.
-        </p>
+        <div className="flex border-b-4 border-gray-600">
+          <p className="text-gray-600 mt-4 whitespace-normal font-serif">
+            Sorularınızı ve taleplerinizi e-posta yoluyla iletebilirsiniz.
+          </p>
+          <Image
+            src={"/mail.png"}
+            alt="mailpng"
+            width={200}
+            height={200}
+            quality={100}
+            className="object-cover mb-4 rounded-lg"
+          />
+        </div>
         <input
           type="text"
           name="name"

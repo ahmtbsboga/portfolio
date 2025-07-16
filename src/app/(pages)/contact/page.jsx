@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { FaWhatsapp, FaInstagram, FaGithub, FaLinkedin } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import ContactForm from "./components/emailSend";
+import Image from "next/image";
 
 const links = [
   {
@@ -41,7 +42,7 @@ const links = [
 
 const Contact = () => {
   return (
-    <div className="fixed top-0 left-0 w-full h-screen bg-zinc-200 text-white flex flex-col justify-center items-center px-4">
+    <div className="absolute top-0 left-0 w-full min-h-screen bg-zinc-200 text-white flex flex-col justify-center items-center px-4 overflow-y-auto mt-10">
       <motion.h1
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
