@@ -40,7 +40,7 @@ const links = [
 
 const Contact = () => {
   return (
-    <div className="fixed top-0 left-0 w-full h-screen bg-zinc-200 text-white flex flex-col justify-center items-center px-4 max-sm:ml-8">
+    <div className="fixed top-0 left-0 w-full h-screen bg-zinc-200 text-white flex flex-col justify-center items-center px-4">
       <motion.h1
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}

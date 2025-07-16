@@ -238,20 +238,30 @@ const Page = () => {
       )}
 
       {/* Ana İçerik */}
-      <div className="relative z-10 w-full">
+      <div className="relative z-10 w-full mt-[-80px]">
         <div className="max-w-5xl w-full mx-auto px-4 py-20">
           {/* Hakkımda Bölümü */}
           <section className="min-h-screen flex flex-col justify-center items-center text-center px-4">
-            <div className="flex flex-col md:flex-row-reverse items-center gap-8">
+            <div className="flex flex-col md:flex-row items-center gap-8">
+              <motion.p
+                initial={{ x: -60, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+                className="max-w-xl leading-relaxed text-sm md:text-base ml-4 bg-gray-100/30 p-2"
+              >
+                {translate
+                  ? "Merhaba! Ben Ahmet, yazılım geliştiricisiyim. React ve React Native ile modern, kullanıcı dostu uygulamalar yapmayı seviyorum. Yeni teknolojiler öğrenmek ve projeler üretmek benim tutkum."
+                  : "Hello! I'm Ahmet, a software developer. I enjoy building modern, user-friendly applications with React and React Native. Learning new technologies and creating projects is my passion."}
+              </motion.p>
+
+              <div className="hidden md:block border-l-2 border-red-800 h-64"></div>
+
               <motion.div
                 initial={{ x: 60, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.7, ease: "easeOut" }}
                 className="flex flex-col items-center md:items-start"
               >
-                <h1 className="text-3xl font-bold mb-6">
-                  {translate ? "Hakkımda" : "About"}
-                </h1>
                 <Image
                   src={"/me1.jpeg"}
                   width={150}
@@ -261,19 +271,6 @@ const Page = () => {
                   className="rounded-lg mt-4 w-36 h-auto"
                 />
               </motion.div>
-
-              <div className="hidden md:block border-l-2 border-red-800 h-64"></div>
-
-              <motion.p
-                initial={{ x: -60, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-                className="max-w-xl leading-relaxed text-sm md:text-base ml-4"
-              >
-                {translate
-                  ? "Merhaba! Ben Ahmet, yazılım geliştiricisiyim. React ve React Native ile modern, kullanıcı dostu uygulamalar yapmayı seviyorum. Yeni teknolojiler öğrenmek ve projeler üretmek benim tutkum."
-                  : "Hello! I'm Ahmet, a software developer. I enjoy building modern, user-friendly applications with React and React Native. Learning new technologies and creating projects is my passion."}
-              </motion.p>
             </div>
           </section>
 
@@ -422,7 +419,7 @@ const Page = () => {
           </section>
 
           {/* İletişim Bölümü */}
-          <section className="min-h-screen flex flex-col justify-center items-center text-center px-4 py-20">
+          <section className="flex flex-col justify-center items-center text-center px-4 py-20 bg-gray-100/30">
             <h1 className="text-3xl md:text-5xl font-bold mb-6">
               {translate ? "İletişim" : "Contact"}
             </h1>
@@ -433,7 +430,7 @@ const Page = () => {
                 : "You can contact me using the information below."}
             </p>
 
-            <div className="flex flex-col items-start space-y-4 w-full max-w-sm">
+            <div className="flex flex-col items-start border-t-4 py-4 space-y-4 w-full max-w-sm">
               <a
                 href="mailto:ahmetcik6666@gmail.com?subject=İletişim%20Talebi&body=Merhaba%20Ahmet,"
                 className="flex items-center justify-center gap-2 underline transition text-sm md:text-base"

@@ -5,6 +5,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { IoIosColorFilter, IoMdClose } from "react-icons/io";
+import { FiArrowUpRight } from "react-icons/fi";
 
 const Projects = () => {
   const [bgChange, setBgChange] = useState("/bgbeyaz.jpg");
@@ -45,9 +46,9 @@ const Projects = () => {
   ];
 
   return (
-    <div className="relative min-h-screen w-full overflow-x-hidden">
-      {/* Arka Plan Resmi */}
-      <div className="fixed inset-0 z-10">
+    <div className="relative min-h-screen w-full">
+      {/* Arka Plan Resmi - Fixed ve z-index düşük */}
+      <div className="fixed inset-0 z-0">
         <Image
           src={bgChange}
           alt="bg"
@@ -153,79 +154,87 @@ const Projects = () => {
         )}
       </div>
 
-      {/* Ana İçerik */}
-      <div className="relative z-10 p-10 max-sm:ml-[-28px] max-sm:p-4">
-        <p className="text-7xl max-sm:text-5xl font-bold text-black px-12 py-2 whitespace-nowrap">
-          {translate ? (
-            <span className="text-red-800">Projelerim</span>
-          ) : (
-            <>
-              <span className="text-black">My </span>
-              <span className="text-red-800">Projects</span>
-            </>
-          )}
-        </p>
-
-        <motion.div
-          className="grid grid-cols-4 gap-5 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 mt-10 max-sm:pl-12"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {projects.map((project, i) => (
-            <motion.div
-              key={project.id}
-              onClick={() => handleMobileClick(i)}
-              className="relative aspect-video w-full bg-black rounded-xl overflow-hidden group cursor-pointer"
-              variants={itemVariants}
-            >
-              <video
-                src={project.src}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover group-hover:opacity-40"
-              />
-              <div
-                className={`absolute top-0 h-full w-1/2 bg-black/70 text-white flex flex-col justify-center p-4
-                  transition-all duration-500
-                  ${activeIndex === i ? "left-0" : "left-[-100%]"}
-                  group-hover:left-0`}
-              >
-                <p className="text-xs" style={{ color: textColor }}>
-                  {translate ? project.text_tr : project.text_en}
-                </p>
-              </div>
-              <h3
-                className="absolute bottom-2 right-2 px-3 py-1 rounded-md text-sm font-semibold"
-                style={{
-                  color: textColor,
-                  backgroundColor:
-                    bgTheme === "dark"
-                      ? "rgba(0,0,0,0.5)"
-                      : "rgba(255,255,255,0.5)",
-                }}
-              >
-                {translate ? project.title_tr : project.title_en}
-              </h3>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        <div className="flex justify-center items-center gap-1 flex-col mt-10 pb-10">
-          <h1 className="font-extrabold text-4xl" style={{ color: textColor }}>
-            {translate ? "Ve dahası .." : "See More"}
-          </h1>
+      {/* Ana İçerik - Sabit ve ortalanmış */}
+      <div className="relative z-10 min-h-screen flex flex-col mt-10">
+        <div className="px-4 pt-4">
+          <p className="text-7xl max-sm:text-5xl font-bold text-black px-8 py-2 whitespace-nowrap">
+            {translate ? (
+              <span className="text-red-800">Projelerim</span>
+            ) : (
+              <>
+                <span className="text-black">My </span>
+                <span className="text-red-800">Projects</span>
+              </>
+            )}
+          </p>
+        </div>
+        <div className="pb-10 mt-10 flex justify-center">
           <Link
             href={"https://github.com/ahmtbsboga"}
             target="_blank"
             rel="noreferrer"
-            style={{ color: textColor }}
-            className="relative underline shadow-2xl shadow-black p-3 rounded-lg duration-700 animate-pulse text-3xl"
+            className="rounded-lg text-2xl font-bold flex items-center gap-2 group"
           >
-            GitHub
+            {translate ? (
+              <span className="text-black group-hover:underline">
+                Ve dahası
+              </span>
+            ) : (
+              <>
+                <span className="text-black group-hover:underline">See</span>
+                <span className="text-red-800 group-hover:underline">More</span>
+              </>
+            )}
+            <FiArrowUpRight className="text-lg group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform text-red-800" />
           </Link>
+        </div>
+        <div className="flex-1 overflow-y-auto pb-20">
+          <motion.div
+            className="grid grid-cols-4 gap-5 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 mt-10 px-4 max-sm:pl-12"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {projects.map((project, i) => (
+              <motion.div
+                key={project.id}
+                onClick={() => handleMobileClick(i)}
+                className="relative aspect-video w-full bg-black rounded-xl overflow-hidden group cursor-pointer"
+                variants={itemVariants}
+              >
+                <video
+                  src={project.src}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover group-hover:opacity-40"
+                />
+                <div
+                  className={`absolute top-0 h-full w-1/2 bg-black/70 text-white flex flex-col justify-center p-4
+                    transition-all duration-500
+                    ${activeIndex === i ? "left-0" : "left-[-100%]"}
+                    group-hover:left-0`}
+                >
+                  <p className="text-xs" style={{ color: textColor }}>
+                    {translate ? project.text_tr : project.text_en}
+                  </p>
+                </div>
+                <h3
+                  className="absolute bottom-2 right-2 px-3 py-1 rounded-md text-sm font-semibold"
+                  style={{
+                    color: textColor,
+                    backgroundColor:
+                      bgTheme === "dark"
+                        ? "rgba(0,0,0,0.5)"
+                        : "rgba(255,255,255,0.5)",
+                  }}
+                >
+                  {translate ? project.title_tr : project.title_en}
+                </h3>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </div>
 
