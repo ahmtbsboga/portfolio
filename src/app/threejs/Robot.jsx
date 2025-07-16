@@ -27,7 +27,7 @@ export default function Robot({ onRobotClick, translate, textColor }) {
   return (
     <div
       className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[320px] z-[1000]
-              border border-white/20 bg-white/50  shadow-xl rounded-3xl 
+             shadow-xl rounded-3xl 
              flex flex-col justify-between items-center p-4 text-white transition-all duration-300
              hover:shadow-white/40 hover:scale-[1.03] active:scale-[0.97] cursor-grab active:cursor-grabbing gap-4"
       title="Click the robot to contact me"
@@ -45,13 +45,13 @@ export default function Robot({ onRobotClick, translate, textColor }) {
         onPointerLeave={() => setIsWaving(false)}
       >
         <Suspense fallback={<Html>Loading...</Html>}>
-          <ambientLight intensity={1.5} />
+          <ambientLight intensity={7.5} />
           <pointLight position={[10, 10, 10]} />
           <Model isWaving={isWaving} onClick={onRobotClick} />
         </Suspense>
         <OrbitControls
           autoRotate
-          autoRotateSpeed={5}
+          autoRotateSpeed={20}
           enableZoom={true}
           enablePan={true}
           maxPolarAngle={Math.PI}
