@@ -30,4 +30,9 @@ p {
   .sidebar-icons {
     @apply hover:scale-105 hover:bg-gray-400 hover:translate-y-[-4px] duration-400;
   }
+
+  /*? HOME PAGE.JSX */
+  .contact {
+    @apply flex items-center justify-center gap-2 underline transition text-sm md:text-base;
+  }
 }

@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { IoIosColorFilter, IoMdClose } from "react-icons/io";
 import { FiArrowUpRight } from "react-icons/fi";
+import { colors } from "@/app/constants/colors";
 
 const Projects = () => {
   const [bgChange, setBgChange] = useState("/bgbeyaz.jpg");
@@ -34,16 +35,7 @@ const Projects = () => {
     visible: { opacity: 1, y: 0 },
   };
 
-  const colors = [
-    { name: "Kırmızı", value: "#ef4444" },
-    { name: "Mavi", value: "#3b82f6" },
-    { name: "Siyah", value: "#000000" },
-    { name: "Turkuaz", value: "#06b6d4" },
-    { name: "Pembe", value: "#ec4899" },
-    { name: "Beyaz", value: "#ffffff" },
-    { name: "Yeşil", value: "#22c55e" },
-    { name: "Mor", value: "#a855f7" },
-  ];
+  const myColors = colors;
 
   return (
     <div className="relative min-h-screen w-full">
@@ -135,7 +127,7 @@ const Projects = () => {
                 {translate ? "Metin Rengi" : "Text Color"}
               </p>
               <div className="grid grid-cols-4 gap-2">
-                {colors.map((color, i) => (
+                {myColors.map((color, i) => (
                   <button
                     key={i}
                     onClick={() => setTextColor(color.value)}

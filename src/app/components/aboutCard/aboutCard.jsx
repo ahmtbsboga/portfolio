@@ -1,5 +1,3 @@
-import React from "react";
-
 const AboutCard = ({ text, textColor, bgTheme }) => {
   return (
     <div

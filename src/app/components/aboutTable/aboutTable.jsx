@@ -1,16 +1,9 @@
+import { infoItems } from "@/app/constants/infoItems";
+import { progressData } from "@/app/constants/progressData";
 import React from "react";
 
 const AboutTable = ({ textColor, translate, bgTheme }) => {
-  const skills = [
-    { name: "JavaScript", percent: 75 },
-    { name: "TypeScript", percent: 70 },
-    { name: "React", percent: 90 },
-    { name: "React Native", percent: 60 },
-    { name: "Node.js", percent: 56 },
-    { name: "Express.js", percent: 80 },
-    { name: "Next.js", percent: 95 },
-    { name: "Tailwind CSS", percent: 100 },
-  ];
+  const skills = progressData;
 
   return (
     <div
@@ -21,60 +14,14 @@ const AboutTable = ({ textColor, translate, bgTheme }) => {
     >
       {/* SOL TARAF: Bilgiler */}
       <div className="grid gap-5">
-        <div className="flex items-center gap-3 max-sm:border-b">
-          <h1 className="font-extrabold max-sm:text-xs">
-            {!translate ? "Birthday :" : "Doğum Günü :"}
-          </h1>
-          <p className="max-sm:text-xs">
-            1 {!translate ? "June" : "Haziran"} 2003
-          </p>
-        </div>
-
-        <div className="flex items-center gap-3 max-sm:border-b">
-          <h1 className="font-extrabold max-sm:text-xs">
-            {!translate ? "Age :" : "Yaş :"}
-          </h1>
-          <p className="max-sm:text-xs">22</p>
-        </div>
-
-        <div className="flex items-center gap-3 max-sm:border-b">
-          <h1 className="font-extrabold max-sm:text-xs">
-            {!translate ? "Phone :" : "Telefon :"}
-          </h1>
-          <p className="max-sm:text-xs">0546 576 7509</p>
-        </div>
-
-        <div className="flex items-center gap-3 max-sm:border-b">
-          <h1 className="font-extrabold max-sm:text-xs">
-            {!translate ? "City :" : "Şehir :"}
-          </h1>
-          <p className="max-sm:text-xs">Yozgat</p>
-        </div>
-
-        <div className="flex items-center gap-3 max-sm:border-b">
-          <h1 className="font-extrabold max-sm:text-xs">
-            {!translate ? "Experience :" : "Deneyim :"}
-          </h1>
-          <p className="max-sm:text-xs">1+ {!translate ? "Year" : "Yıl"}</p>
-        </div>
-
-        <div className="flex items-center gap-3 max-sm:border-b">
-          <h1 className="font-extrabold max-sm:text-xs max-sm:whitespace-nowrap">
-            {!translate ? "Tech Stack:" : "Teknoloji Yığını:"}
-          </h1>
-          <p className="max-sm:text-xs">
-            React, React Native, Node.js, Tailwind CSS
-          </p>
-        </div>
-
-        <div className="flex items-center gap-3 max-sm:border-b">
-          <h1 className="font-extrabold max-sm:text-xs">
-            {!translate ? "Languages:" : "Diller:"}
-          </h1>
-          <p className="max-sm:text-xs max-sm:whitespace-nowrap">
-            JavaScript, TypeScript
-          </p>
-        </div>
+        {infoItems.map(({ labelTR, labelEN, value }, i) => (
+          <div key={i} className="flex items-center gap-3 max-sm:border-b">
+            <h1 className="font-extrabold max-sm:text-xs">
+              {!translate ? labelEN : labelTR}
+            </h1>
+            <p className="max-sm:text-xs">{value}</p>
+          </div>
+        ))}
 
         <div className="flex items-center gap-3 max-sm:border-b">
           <h1 className="font-extrabold max-sm:text-xs">

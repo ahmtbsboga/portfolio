@@ -7,6 +7,7 @@ import { IoIosColorFilter, IoMdClose } from "react-icons/io";
 import Image from "next/image";
 import AboutTable from "@/app/components/aboutTable/aboutTable";
 import AboutDev from "@/app/components/aboutDev/aboutDev";
+import { colors } from "@/app/constants/colors";
 
 const About = () => {
   const [translate, setTranslate] = useState(false);
@@ -14,16 +15,7 @@ const About = () => {
   const [textColor, setTextColor] = useState("#000000");
   const [bgTheme, setBgTheme] = useState("dark");
 
-  const colors = [
-    { name: "Kırmızı", value: "#ef4444" },
-    { name: "Mavi", value: "#3b82f6" },
-    { name: "Siyah", value: "#000000" },
-    { name: "Turkuaz", value: "#06b6d4" },
-    { name: "Pembe", value: "#ec4899" },
-    { name: "Beyaz", value: "#ffffff" },
-    { name: "Yeşil", value: "#22c55e" },
-    { name: "Mor", value: "#a855f7" },
-  ];
+  const myColors = colors;
 
   // Arkaplan temasını değiştir
   useEffect(() => {
@@ -195,7 +187,7 @@ const About = () => {
               {translate ? "Metin Rengi" : "Text Color"}
             </p>
             <div className="grid grid-cols-4 gap-2">
-              {colors.map((color, i) => (
+              {myColors.map((color, i) => (
                 <button
                   key={i}
                   onClick={() => setTextColor(color.value)}

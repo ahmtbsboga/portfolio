@@ -1,10 +1,9 @@
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
 import { Noto_Serif } from "next/font/google";
 import "./globals.css";
 import Sidebar from "./components/sidebar";
 import BackgroundAudio from "./utils/backgroundAudio";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const notoSerif = Noto_Serif({
   variable: "--font-noto-serif",
@@ -38,14 +37,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="icon" href="/favicon.ico" />
-      </head>
+      <head />
       <body className={`${notoSerif.variable} antialiased`}>
-        <div
-          className="bg-gray-200
- overflow-y-hidden flex text-white min-h-screen"
-        >
+        <div className="bg-gray-200 overflow-y-hidden flex text-white min-h-screen">
           <BackgroundAudio />
           <Sidebar />
           <main className="px-10 py-10">{children}</main>

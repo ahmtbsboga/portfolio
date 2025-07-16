@@ -1,9 +1,11 @@
+"use client";
+
 import { useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
 import Image from "next/image";
 
-const ContactForm = ({ translate, textColor }) => {
+const ContactForm = ({ translate, textColor, onClose }) => {
   const form = useRef();
 
   const sendEmail = (e) => {
@@ -17,18 +19,21 @@ const ContactForm = ({ translate, textColor }) => {
         "sy8eRlrM4_KsHjyMc"
       )
       .then(
-        (result) => {
-          toast.success("Mesaj gönderildi");
+        () => {
+          toast.success(translate ? "Mesaj Gönderildi" : "Message Sent");
           e.target.reset();
+          onClose();
         },
-        (error) => {
-          toast.error("Mesaj gönderilemedi");
+        () => {
+          toast.error(
+            translate ? "Mesaj gönderilemedi" : "Message failed to send"
+          );
         }
       );
   };
 
   return (
-    <div className="z-50 bg-gray-100 mt-10 rounded-lg">
+    <div className="z-50 bg-gray-100 rounded-lg">
       <style jsx>{`
         ::placeholder {
           color: ${textColor};

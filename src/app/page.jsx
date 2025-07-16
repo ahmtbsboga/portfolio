@@ -4,33 +4,18 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { CgArrowTopRight } from "react-icons/cg";
-import { FaNodeJs } from "react-icons/fa";
-import {
-  SiReact,
-  SiTypescript,
-  SiTailwindcss,
-  SiMongodb,
-  SiFirebase,
-  SiExpress,
-  SiHtml5,
-  SiCss3,
-  SiJavascript,
-  SiNextdotjs,
-  SiFramer,
-  SiRedux,
-  SiGithub,
-  SiVite,
-} from "react-icons/si";
 import { MdEmail, MdPhone } from "react-icons/md";
 import { FaWhatsapp } from "react-icons/fa";
 import { IoIosColorFilter, IoMdClose } from "react-icons/io";
 import ShadowTheme from "./components/shadowTheme/shadowTheme";
+import { colors } from "./constants/colors";
+import { techs } from "./constants/tech";
 
 const Page = () => {
   const [bgChange, setBgChange] = useState("/bgbeyaz.jpg");
   const [selectedShadow, setSelectedShadow] = useState("shadow-black");
-  const [translate, setTranslate] = useState(false);
   const [bgTheme, setBgTheme] = useState("dark");
+  const [translate, setTranslate] = useState(false);
   const [themeOpen, setThemeOpen] = useState(false);
   const [textColor, setTextColor] = useState("#000000");
   const [windowSize, setWindowSize] = useState({
@@ -61,59 +46,8 @@ const Page = () => {
     return "mt-0";
   };
 
-  const colors = [
-    { name: "Kırmızı", value: "#ef4444" },
-    { name: "Mavi", value: "#3b82f6" },
-    { name: "Siyah", value: "#000000" },
-    { name: "Turkuaz", value: "#06b6d4" },
-    { name: "Pembe", value: "#ec4899" },
-    { name: "Beyaz", value: "#ffffff" },
-    { name: "Yeşil", value: "#22c55e" },
-    { name: "Mor", value: "#a855f7" },
-  ];
-
-  const techs = [
-    { name: "React", url: "https://reactjs.org/", icon: SiReact },
-    { name: "React Native", url: "https://reactnative.dev/", icon: SiReact },
-    { name: "Next.js", url: "https://nextjs.org/", icon: SiNextdotjs },
-    {
-      name: "TypeScript",
-      url: "https://www.typescriptlang.org/",
-      icon: SiTypescript,
-    },
-    {
-      name: "JavaScript",
-      url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-      icon: SiJavascript,
-    },
-    { name: "Node.js", url: "https://nodejs.org/", icon: FaNodeJs },
-    { name: "Express.js", url: "https://expressjs.com/", icon: SiExpress },
-    { name: "MongoDB", url: "https://www.mongodb.com/", icon: SiMongodb },
-    { name: "Firebase", url: "https://firebase.google.com/", icon: SiFirebase },
-    {
-      name: "Tailwind CSS",
-      url: "https://tailwindcss.com/",
-      icon: SiTailwindcss,
-    },
-    { name: "Redux", url: "https://redux.js.org/", icon: SiRedux },
-    {
-      name: "Framer Motion",
-      url: "https://www.framer.com/motion/",
-      icon: SiFramer,
-    },
-    { name: "Vite", url: "https://vitejs.dev/", icon: SiVite },
-    {
-      name: "HTML5",
-      url: "https://developer.mozilla.org/en-US/docs/Web/HTML",
-      icon: SiHtml5,
-    },
-    {
-      name: "CSS3",
-      url: "https://developer.mozilla.org/en-US/docs/Web/CSS",
-      icon: SiCss3,
-    },
-    { name: "GitHub", url: "https://github.com/", icon: SiGithub },
-  ];
+  const myColors = colors;
+  const myTechs = techs;
 
   return (
     <div
@@ -221,7 +155,7 @@ const Page = () => {
               {translate ? "Metin Rengi" : "Text Color"}
             </p>
             <div className="grid grid-cols-4 gap-2">
-              {colors.map((color, i) => (
+              {myColors.map((color, i) => (
                 <button
                   key={i}
                   onClick={() => setTextColor(color.value)}
@@ -401,7 +335,7 @@ const Page = () => {
             />
 
             <div className="flex flex-wrap justify-center gap-5 mt-5 md:gap-4 max-w-3xl">
-              {techs.map(({ name, url, icon: Icon }, index) => (
+              {myTechs.map(({ name, url, icon: Icon }, index) => (
                 <motion.div
                   key={name}
                   initial={{ y: -30, opacity: 0 }}
@@ -442,7 +376,7 @@ const Page = () => {
             <div className="flex flex-col items-start border-t-4 py-4 space-y-4 w-full max-w-sm">
               <a
                 href="mailto:ahmetcik6666@gmail.com?subject=İletişim%20Talebi&body=Merhaba%20Ahmet,"
-                className="flex items-center justify-center gap-2 underline transition text-sm md:text-base"
+                className="contact"
                 style={{ color: textColor }}
               >
                 <MdEmail size={20} />
@@ -453,7 +387,7 @@ const Page = () => {
                 href="https://wa.me/905465767509?text=Merhaba%2C%20portfolyo%20sitenizi%20inceledim%20ve%20detayl%C4%B1%20bilgi%20almak%20istiyorum.%20M%C3%BCsaitseniz%20g%C3%B6r%C3%BC%C5%9Febilir%20miyiz%3F"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 underline transition text-sm md:text-base"
+                className="contact"
                 style={{ color: textColor }}
               >
                 <FaWhatsapp size={20} />
@@ -462,7 +396,7 @@ const Page = () => {
 
               <a
                 href="tel:+905465767509"
-                className="flex items-center justify-center gap-2 underline transition text-sm md:text-base"
+                className="contact"
                 style={{ color: textColor }}
               >
                 <MdPhone size={20} />

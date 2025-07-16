@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { CiMenuBurger } from "react-icons/ci";
 import { AiFillHome } from "react-icons/ai";
 import { VscProject } from "react-icons/vsc";
 import { FaUserAlt } from "react-icons/fa";

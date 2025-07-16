@@ -7,6 +7,8 @@ import { MdEmail } from "react-icons/md";
 import ContactForm from "./components/emailSend";
 import { IoIosColorFilter, IoMdClose } from "react-icons/io";
 import Image from "next/image";
+import { colors } from "././././../../constants/colors";
+import Robot from "../../threejs/Robot";
 
 const links = [
   {
@@ -46,25 +48,72 @@ const Contact = () => {
   const [themeOpen, setThemeOpen] = useState(false);
   const [textColor, setTextColor] = useState("#000000");
   const [bgTheme, setBgTheme] = useState("dark");
+  const [showEmailForm, setShowEmailForm] = useState(false);
 
   useEffect(() => {
     document.body.style.backgroundColor =
       bgTheme === "dark" ? "#0f172a" : "#f8fafc";
   }, [bgTheme]);
 
-  const colors = [
-    { name: "Kırmızı", value: "#ef4444" },
-    { name: "Mavi", value: "#3b82f6" },
-    { name: "Siyah", value: "#000000" },
-    { name: "Turkuaz", value: "#06b6d4" },
-    { name: "Pembe", value: "#ec4899" },
-    { name: "Beyaz", value: "#ffffff" },
-    { name: "Yeşil", value: "#22c55e" },
-    { name: "Mor", value: "#a855f7" },
-  ];
+  const myColors = colors;
+
   return (
-    <div className="relative top-0 left-0 w-full min-h-screen flex flex-col justify-center items-center px-4 overflow-y-auto mt-10 z-10">
-      <ContactForm translate={translate} textColor={textColor} />
+    <div className="relative top-0 left-0 w-full min-h-screen flex flex-col justify-center items-center px-4 overflow-y-auto z-10 min-md:ml-40 min-lg:ml-50 min-xl:ml-60 max-sm:ml-15">
+      {/* 3D Robot */}
+      {!showEmailForm ? (
+        <Robot
+          onRobotClick={() => setShowEmailForm(true)}
+          translate={translate}
+          textColor={textColor}
+        />
+      ) : (
+        ""
+      )}
+
+      {/* Email Form Modal */}
+      {showEmailForm && (
+        <div className="fixed inset-0 overflow-y-auto backdrop-blur-sm bg-black/50 z-150 flex-col min-h-screen py-20 overflow-auto flex items-center">
+          <div className="relative bg-white p-6 rounded-lg max-w-md w-full min-h-full mx-4 overflow-auto">
+            <button
+              onClick={() => setShowEmailForm(false)}
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+            >
+              ✕
+            </button>
+            <ContactForm
+              translate={translate}
+              textColor={textColor}
+              onClose={() => setShowEmailForm(false)}
+            />
+          </div>
+
+          <div className="flex flex-col items-center gap-6 w-full mt-20 max-w-md z-50">
+            {links.map((link, i) => (
+              <motion.a
+                key={i}
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+                className={`w-full flex items-center justify-center gap-3 ${link.bg} transition-all duration-300 py-5 px-6 text-lg font-medium rounded-full shadow-lg`}
+              >
+                {link.icon} {link.text}
+              </motion.a>
+            ))}
+            <button
+              onClick={() => setShowEmailForm(false)}
+              type="button"
+              className="px-6 py-5 bg-black text-white hover:bg-white hover:text-black w-full rounded-4xl duration-400 mb-20"
+            >
+              {translate ? "Kapat" : "Close"}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Background Image */}
       <div className="fixed inset-0 z-10">
         {bgTheme === "dark" ? (
           <Image
@@ -85,32 +134,6 @@ const Contact = () => {
         )}
       </div>
 
-      <motion.h1
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        style={{ color: textColor }}
-        className="text-4xl font-bold mb-10 text-black z-50 mt-10 border-b-2"
-      >
-        {translate ? "İletişim" : "Contact"}
-      </motion.h1>
-
-      <div className="flex flex-col items-center gap-6 w-full max-w-md z-50">
-        {links.map((link, i) => (
-          <motion.a
-            key={i}
-            href={link.href}
-            target="_blank"
-            rel="noreferrer"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1, duration: 0.5 }}
-            className={`w-full flex items-center justify-center gap-3 ${link.bg} transition-all duration-300 py-5 px-6 text-lg font-medium rounded-full shadow-lg`}
-          >
-            {link.icon} {link.text}
-          </motion.a>
-        ))}
-      </div>
       {/* Dil Değiştirme Butonu */}
       <motion.button
         onClick={() => setTranslate(!translate)}
@@ -128,7 +151,7 @@ const Contact = () => {
         onClick={() => setThemeOpen(!themeOpen)}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className={`fixed top-20 right-5 z-50 p-3 rounded-full shadow-lg ${
+        className={`fixed top-20 right-5 z-50 p-3 rounded-full shadow-lg  ${
           bgTheme === "dark" ? "bg-white/20" : "bg-black/20"
         } backdrop-blur-md text-black`}
       >
@@ -140,7 +163,7 @@ const Contact = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className={`fixed top-36 right-5 z-50 p-4 rounded-xl shadow-xl ${
+          className={`fixed top-36 right-5 z-9999 p-4 rounded-xl shadow-xl ${
             bgTheme === "dark" ? "bg-gray-800" : "bg-white"
           }`}
         >
@@ -168,7 +191,6 @@ const Contact = () => {
                   src="/bgbeyaz.jpg"
                   alt="bg"
                   className="w-10 rounded-full h-10"
-                  onClick={() => setBgChange("/bgbeyaz.jpg")}
                 />
               </button>
               <button
@@ -185,7 +207,6 @@ const Contact = () => {
                   src="/bgkrem.jpeg"
                   alt="bg"
                   className="w-10 rounded-full h-10"
-                  onClick={() => setBgChange("/bgkrem.jpeg")}
                 />
               </button>
             </div>
@@ -197,7 +218,7 @@ const Contact = () => {
               {translate ? "Metin Rengi" : "Text Color"}
             </p>
             <div className="grid grid-cols-4 gap-2">
-              {colors.map((color, i) => (
+              {myColors.map((color, i) => (
                 <button
                   key={i}
                   onClick={() => setTextColor(color.value)}
