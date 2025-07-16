@@ -24,9 +24,11 @@ import {
 import { MdEmail, MdPhone } from "react-icons/md";
 import { FaWhatsapp } from "react-icons/fa";
 import { IoIosColorFilter, IoMdClose } from "react-icons/io";
+import ShadowTheme from "./components/shadowTheme/shadowTheme";
 
 const Page = () => {
   const [bgChange, setBgChange] = useState("/bgbeyaz.jpg");
+  const [selectedShadow, setSelectedShadow] = useState("shadow-black");
   const [translate, setTranslate] = useState(false);
   const [bgTheme, setBgTheme] = useState("dark");
   const [themeOpen, setThemeOpen] = useState(false);
@@ -242,12 +244,12 @@ const Page = () => {
         <div className="max-w-5xl w-full mx-auto px-4 py-20">
           {/* Hakkımda Bölümü */}
           <section className="min-h-screen flex flex-col justify-center items-center text-center px-4">
-            <div className="flex flex-col md:flex-row items-center gap-8">
+            <div className="flex flex-col md:flex-row items-center gap-8px-4">
               <motion.p
                 initial={{ x: -60, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-                className="max-w-xl leading-relaxed text-sm md:text-base ml-4 bg-gray-100/30 p-2"
+                className="max-w-xl  leading-relaxed text-sm md:text-base ml-4 bg-gray-100/30 p-2 mt-4"
               >
                 {translate
                   ? "Merhaba! Ben Ahmet, yazılım geliştiricisiyim. React ve React Native ile modern, kullanıcı dostu uygulamalar yapmayı seviyorum. Yeni teknolojiler öğrenmek ve projeler üretmek benim tutkum."
@@ -268,14 +270,14 @@ const Page = () => {
                   height={100}
                   quality={100}
                   alt="profile"
-                  className="rounded-lg mt-4 w-36 h-auto"
+                  className="rounded-lg mt-4 w-36 h-auto mb-4"
                 />
               </motion.div>
             </div>
           </section>
 
           {/* Projeler Bölümü */}
-          <section className="min-h-screen flex flex-col justify-center items-center text-center px-4 py-20">
+          <section className="min-h-screen flex flex-col justify-center items-center text-center px-4 py-20 ">
             <motion.h1
               initial={{ y: -60, opacity: 0, scale: 0.9 }}
               animate={{ y: 0, opacity: 1, scale: 1 }}
@@ -306,7 +308,7 @@ const Page = () => {
                     delay: i * 0.2,
                     ease: "easeOut",
                   }}
-                  className="bg-white/20 rounded-lg p-6 shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer backdrop-blur-sm"
+                  className="bg-white/20 rounded-lg p-6 hover:scale-105 transition-transform duration-300 cursor-pointer backdrop-blur-sm "
                 >
                   {i === 0 ? (
                     <>
@@ -391,7 +393,14 @@ const Page = () => {
               {translate ? "Yetenekler" : "Skills"}
             </motion.h1>
 
-            <div className="flex flex-wrap justify-center gap-3 md:gap-4 max-w-3xl">
+            <ShadowTheme
+              selectedShadow={selectedShadow}
+              textColor={textColor}
+              translate={translate}
+              setSelectedShadow={setSelectedShadow}
+            />
+
+            <div className="flex flex-wrap justify-center gap-5 mt-5 md:gap-4 max-w-3xl">
               {techs.map(({ name, url, icon: Icon }, index) => (
                 <motion.div
                   key={name}
@@ -408,7 +417,7 @@ const Page = () => {
                     href={url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 bg-white/20 rounded-full px-4 py-2 md:px-6 md:py-3 font-medium text-sm md:text-base transition hover:bg-black/50 duration-300 backdrop-blur-sm"
+                    className={`flex items-center gap-2 bg-white/20 rounded-full px-4 py-2 md:px-6 md:py-3 font-medium text-sm md:text-base transition hover:bg-black/30 duration-300 backdrop-blur-sm shadow-md ${selectedShadow}`}
                   >
                     <Icon className="text-lg md:text-xl" />
                     {name}
@@ -419,7 +428,7 @@ const Page = () => {
           </section>
 
           {/* İletişim Bölümü */}
-          <section className="flex flex-col justify-center items-center text-center px-4 py-20 bg-gray-100/30">
+          <section className="flex flex-col justify-center items-center text-center px-4 py-20 bg-gray-100/30  rounded-lg">
             <h1 className="text-3xl md:text-5xl font-bold mb-6">
               {translate ? "İletişim" : "Contact"}
             </h1>

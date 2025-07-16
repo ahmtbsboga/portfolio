@@ -1,0 +1,68 @@
+"use client";
+import React, { useState } from "react";
+import { IoIosArrowUp as Up, IoIosArrowDown as Down } from "react-icons/io";
+
+const ShadowTheme = ({ selectedShadow, setSelectedShadow }) => {
+  const [shown, setShown] = useState(false);
+  const shadowColors = [
+    { name: "shadow-black", hex: "#000000" },
+    { name: "shadow-white", hex: "#ffffff" },
+    { name: "shadow-cyan-500", hex: "#06b6d4" },
+    { name: "shadow-sky-500", hex: "#0ea5e9" },
+    { name: "shadow-blue-500", hex: "#3b82f6" },
+    { name: "shadow-indigo-500", hex: "#6366f1" },
+    { name: "shadow-violet-500", hex: "#8b5cf6" },
+    { name: "shadow-purple-500", hex: "#a855f7" },
+    { name: "shadow-pink-500", hex: "#ec4899" },
+    { name: "shadow-rose-500", hex: "#f43f5e" },
+    { name: "shadow-red-500", hex: "#ef4444" },
+    { name: "shadow-orange-500", hex: "#f97316" },
+    { name: "shadow-amber-500", hex: "#f59e0b" },
+    { name: "shadow-yellow-500", hex: "#eab308" },
+    { name: "shadow-lime-500", hex: "#84cc16" },
+    { name: "shadow-green-500", hex: "#22c55e" },
+    { name: "shadow-emerald-500", hex: "#10b981" },
+    { name: "shadow-teal-500", hex: "#14b8a6" },
+    { name: "shadow-fuchsia-500", hex: "#d946ef" },
+    { name: "shadow-warmGray-300", hex: "#d6d3d1" },
+  ];
+
+  return (
+    <div>
+      <button onClick={() => setShown(!shown)}>
+        {!shown ? (
+          <Down
+            size={30}
+            className="border rounded-full px-2 py-1 hover:bg-black hover:text-white hover:border-black duration-400 hover:scale-120"
+          />
+        ) : (
+          <Up
+            size={30}
+            className="border rounded-full px-2 py-1 hover:bg-black hover:text-white hover:border-black duration-400 hover:scale-120"
+          />
+        )}
+      </button>
+      {shown && (
+        <div className="mt-4 px-4 py-4 w-fit">
+          <div className="grid grid-cols-16 max-md:grid-cols-8 max-sm:grid-cols-6 gap-2">
+            {shadowColors.map(({ name, hex }, i) => (
+              <button
+                key={i}
+                onClick={() => setSelectedShadow(name)}
+                className={`w-8 h-8 rounded-full ${
+                  selectedShadow === name
+                    ? "ring-2 ring-offset-2 ring-blue-500"
+                    : ""
+                }`}
+                style={{ backgroundColor: hex }}
+                title={name}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default ShadowTheme;
