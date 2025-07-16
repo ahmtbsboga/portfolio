@@ -44,7 +44,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`flex min-h-screen rounded-tr-4xl rounded-br-4xl fixed z-50 ${
+      className={`flex min-h-screen rounded-tr-4xl rounded-br-4xl fixed z-150 ${
         sideBarOpen ? "bg-gray-100/60 min-h-fit " : ""
       }`}
     >
