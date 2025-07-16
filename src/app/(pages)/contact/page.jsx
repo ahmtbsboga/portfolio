@@ -64,7 +64,7 @@ const Contact = () => {
   ];
   return (
     <div className="relative top-0 left-0 w-full min-h-screen flex flex-col justify-center items-center px-4 overflow-y-auto mt-10 z-10">
-      <ContactForm translate={translate} />
+      <ContactForm translate={translate} textColor={textColor} />
       <div className="fixed inset-0 z-10">
         {bgTheme === "dark" ? (
           <Image
@@ -89,6 +89,7 @@ const Contact = () => {
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
+        style={{ color: textColor }}
         className="text-4xl font-bold mb-10 text-black z-50 mt-10 border-b-2"
       >
         {translate ? "İletişim" : "Contact"}
