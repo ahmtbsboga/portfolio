@@ -174,11 +174,11 @@ const Page = () => {
               >
                 <Image
                   src={"/me1.jpeg"}
-                  width={100}
-                  height={100}
+                  width={250}
+                  height={250}
                   quality={100}
                   alt="profile"
-                  className="rounded-lg mt-4 w-64 h-auto mb-4"
+                  className="rounded-lg mt-4 mb-4"
                 />
               </motion.div>
             </div>
